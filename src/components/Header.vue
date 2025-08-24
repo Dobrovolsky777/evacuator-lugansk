@@ -1,23 +1,28 @@
 <template>
   <header>
-    <!-- Логотип + название -->
+    <!-- Логотип -->
     <div class="logo-wrap">
       <img src="/logo.png" alt="Логотип" class="logo" />
       <h1>Эвакуатор Луганск</h1>
     </div>
 
-    <!-- Кнопка гамбургер -->
-    <button class="burger" @click="toggleMenu">
-      ☰
+    <!-- Бургер -->
+    <button class="burger" :class="{ active: isMenuOpen }" @click="toggleMenu">
+      <span></span>
+      <span></span>
+      <span></span>
     </button>
 
-    <!-- Навигация -->
-    <nav :class="{ open: isMenuOpen }">
-      <router-link to="/" @click="closeMenu">Главная</router-link>
-      <router-link to="/services" @click="closeMenu">Услуги</router-link>
-      <router-link to="/about" @click="closeMenu">О нас</router-link>
-      <router-link to="/contacts" @click="closeMenu">Контакты</router-link>
-    </nav>
+    <!-- Навигация (мобильная версия выпадает поверх) -->
+    <div class="mobile-menu" v-if="isMenuOpen">
+      <div class="overlay" @click="closeMenu"></div>
+      <nav class="menu">
+        <router-link to="/" @click="closeMenu">Главная</router-link>
+        <router-link to="/services" @click="closeMenu">Услуги</router-link>
+        <router-link to="/about" @click="closeMenu">О нас</router-link>
+        <router-link to="/contacts" @click="closeMenu">Контакты</router-link>
+      </nav>
+    </div>
 
     <!-- Кнопка вызова -->
     <div class="right">
@@ -29,9 +34,7 @@
 <script>
 export default {
   data() {
-    return {
-      isMenuOpen: false
-    }
+    return { isMenuOpen: false }
   },
   methods: {
     toggleMenu() {
@@ -51,8 +54,9 @@ header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  flex-wrap: wrap;
   color: white;
+  position: relative;
+  z-index: 10;
 }
 
 .logo-wrap {
@@ -60,39 +64,46 @@ header {
   align-items: center;
 }
 .logo {
-  height: 45px;
+  height: 40px;
   margin-right: 10px;
 }
 
-/* меню */
-nav {
-  flex: 1;
-  display: flex;
-  justify-content: center;
-  gap: 10px;
+/* бургер */
+.burger {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 26px;
+  height: 20px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  z-index: 20;
 }
-nav a {
-  padding: 8px 12px;
-  text-decoration: none;
-  color: white;
-  background: #666;
-  border-radius: 4px;
+.burger span {
+  height: 3px;
+  background: white;
+  border-radius: 3px;
   transition: 0.3s;
 }
-nav a:hover {
-  background: #888;
+.burger.active span:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+.burger.active span:nth-child(2) {
+  opacity: 0;
+}
+.burger.active span:nth-child(3) {
+  transform: rotate(-45deg) translate(5px, -5px);
 }
 
 /* кнопка вызова */
 .right {
   display: flex;
-  justify-content: flex-end;
-  flex: 1;
 }
 .call-btn {
   background: #666;
   color: white;
-  padding: 10px 20px;
+  padding: 10px 18px;
   border-radius: 6px;
   text-decoration: none;
   font-weight: 600;
@@ -103,52 +114,61 @@ nav a:hover {
   background: #888;
 }
 
-/* кнопка-гамбургер */
-.burger {
-  display: none;
-  font-size: 26px;
-  background: none;
-  border: none;
+/* мобильное меню */
+.mobile-menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 15;
+}
+.mobile-menu .overlay {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.5);
+}
+.mobile-menu .menu {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 75%;
+  max-width: 280px;
+  height: 100%;
+  background: #333;
+  display: flex;
+  flex-direction: column;
+  padding: 80px 20px;
+  gap: 15px;
+  transform: translateX(100%);
+  animation: slideIn 0.3s forwards;
+}
+.mobile-menu .menu a {
   color: white;
-  cursor: pointer;
+  text-decoration: none;
+  font-size: 18px;
+  padding: 10px;
+  background: #444;
+  border-radius: 4px;
+  opacity: 0;
+  animation: fadeIn 0.5s forwards;
+}
+.mobile-menu .menu a:nth-child(1) { animation-delay: 0.1s; }
+.mobile-menu .menu a:nth-child(2) { animation-delay: 0.2s; }
+.mobile-menu .menu a:nth-child(3) { animation-delay: 0.3s; }
+.mobile-menu .menu a:nth-child(4) { animation-delay: 0.4s; }
+
+@keyframes slideIn {
+  to { transform: translateX(0); }
+}
+@keyframes fadeIn {
+  to { opacity: 1; }
 }
 
-/* 📱 адаптив */
+/* адаптив */
 @media (max-width: 768px) {
-  nav {
-    display: none;
-    flex-direction: column;
-    width: 100%;
-    text-align: center;
-    margin-top: 10px;
-
-    max-height: 0;
-    overflow: hidden;
-    opacity: 0;
-    transition: all 0.4s ease;
-  }
-  nav.open {
-    display: flex;
-    max-height: 300px;
-    opacity: 1;
-  }
-
-  /* пункты появляются с каскадом */
-  nav.open a {
-    opacity: 1;
-    transform: translateY(0);
-  }
-  nav.open a:nth-child(1) { transition-delay: 0.1s; }
-  nav.open a:nth-child(2) { transition-delay: 0.2s; }
-  nav.open a:nth-child(3) { transition-delay: 0.3s; }
-  nav.open a:nth-child(4) { transition-delay: 0.4s; }
-
-  .burger {
-    display: block; /* показываем кнопку */
-  }
-
-  .right {
-    flex: 0;
-  }
+  .burger { display: flex; }
+  nav { display: none; } /* убираем десктопное меню */
 }
 </style>
