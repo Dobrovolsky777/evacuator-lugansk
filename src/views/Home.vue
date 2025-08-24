@@ -38,7 +38,7 @@
   top: 50%; left: 50%;
   transform: translate(-50%, -50%);
   z-index: 2;
-  animation: fadeIn 1.2s ease-in;
+
 }
 
 /* кнопка вызова */
