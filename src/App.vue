@@ -46,4 +46,42 @@ main {
   from { opacity: 0; transform: translateY(20px); }
   to   { opacity: 1; transform: translateY(0); }
 }
+
+/* 📱 Адаптация под телефоны */
+@media (max-width: 768px) {
+  body {
+    font-size: 14px;
+  }
+
+  h1 {
+    font-size: 20px;
+  }
+
+  h2 {
+    font-size: 18px;
+  }
+
+  main {
+    padding: 10px;
+  }
+
+  .call-btn {
+    font-size: 16px;
+    padding: 12px 18px;
+  }
+
+  .hero-img {
+    max-height: 300px;  /* картинка меньше на мобилке */
+  }
+
+  nav a {
+    font-size: 14px;
+    padding: 6px 10px;
+  }
+
+  footer {
+    font-size: 12px;
+    padding: 8px;
+  }
+}
 </style>

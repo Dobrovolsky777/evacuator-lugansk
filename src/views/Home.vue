@@ -16,6 +16,15 @@
   text-align: center;
   color: white;
   overflow: hidden;
+  min-height: 300px; /* на мобилке секция не слишком большая */
+}
+
+.hero-content h2 {
+  font-size: 22px;
+}
+
+.hero-content p {
+  font-size: 14px;
 }
 
 .hero-img {
