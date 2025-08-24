@@ -26,7 +26,7 @@
 
     <!-- Кнопка вызова -->
     <div class="right">
-      <a class="call-btn" href="tel:+79591486749">📞 Вызвать</a>
+      <a class="call-btn" href="tel:+79591486749">📞Вызвать</a>
     </div>
   </header>
 </template>
