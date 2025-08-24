@@ -37,17 +37,35 @@ header {
   margin-right: 10px;
 }
 
-nav {
-  flex: 1;
-  display: flex;
-  justify-content: center;  /* кнопки строго по центру */
-  gap: 10px;
+.burger {
+  display: none;          /* по умолчанию скрыт */
+  font-size: 26px;
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
 }
 
-  nav.open {
-    max-height: 300px;           
-    opacity: 1;
+@media (max-width: 768px) {
+  nav {
+    display: none;                 /* скрываем меню по умолчанию */
+    flex-direction: column;
+    width: 100%;
+    text-align: center;
+    margin-top: 10px;
   }
+  nav.open {
+    display: flex;                 /* показываем при клике */
+  }
+  .burger {
+    display: block;                /* показываем кнопку на телефонах */
+  }
+  .right {
+    flex: 0;                       /* кнопка вызова справа не ломает сетку */
+  }
+}
+
+
 
 nav a {
   padding: 8px 12px;
