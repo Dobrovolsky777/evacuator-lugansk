@@ -4,7 +4,7 @@
     <div class="hero-content">
       <h2>Быстрая помощь на дороге</h2>
       <p>Эвакуатор в Луганске и области, круглосуточно.</p>
-      <a class="call-btn" href="tel:+79999999999">📞 Вызвать сейчас</a>
+      <a class="call-btn" href="tel:+79591486749">📞 Вызвать сейчас</a>
     </div>
     <img class="hero-img" src="/evacuator.jpg" alt="Эвакуатор">
   </section>
@@ -24,6 +24,7 @@
   object-fit: cover;
   filter: brightness(60%);
   max-height: 700px;
+    animation: fadeIn 1s ease-in;
 }
 
 .overlay {
@@ -54,6 +55,7 @@
   font-weight: 600;
   box-shadow: 0 4px 10px rgba(0,0,0,0.4);
   transition: 0.3s;
+
 }
 .call-btn:hover {
   background: #414141;

@@ -1,8 +1,8 @@
 <template>
   <section class="fade-section">
     <h2>Контакты</h2>
-    <p>Телефон: <a href="tel:+79999999999">+7 (999) 999-99-99</a></p>
-    <p>WhatsApp / Viber: +7 (999) 999-99-99</p>
+    <p>Телефон: <a href="tel:+79591486749">+7 (959) 148-67-49</a></p>
+    <p>WhatsApp / Viber: +7 (959) 148-67-49</p>
     <iframe 
       src="https://yandex.ru/map-widget/v1/?um=constructor%3Aexample" 
       width="100%" 

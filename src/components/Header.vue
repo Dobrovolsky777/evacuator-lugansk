@@ -12,7 +12,7 @@
       <router-link to="/contacts">Контакты</router-link>
     </nav>
 
-    <a class="call-btn" href="tel:+79999999999">📞 Вызвать</a>
+    <a class="call-btn" href="tel:+79591486749">📞 Вызвать</a>
   </header>
 </template>
 
